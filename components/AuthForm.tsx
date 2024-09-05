@@ -19,6 +19,7 @@ import { useRouter } from 'next/navigation';
 import CustomInput from './CustomInput';
 import { authFormSchema } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
+import { signUp } from '@/lib/actions/user.actions';
 // import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions';
 // import PlaidLink from './PlaidLink';
 
@@ -41,7 +42,6 @@ const AuthForm = ({ type }: { type: string }) => {
     // 2. Define a submit handler.
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
       setIsLoading(true);
-
       try {
         // Sign up with Appwrite & create plaid token
         
@@ -59,9 +59,9 @@ const AuthForm = ({ type }: { type: string }) => {
             password: data.password
           }
 console.log(userData);
-        //   const newUser = await signUp(userData);
-
-        //   setUser(newUser);
+          const newUser = await signUp(userData);
+console.log(22,newUser);
+          setUser(newUser);
         }
 
         // if(type === 'sign-in') {
@@ -87,7 +87,7 @@ console.log(userData);
               src="/icons/logo.svg"
               width={34}
               height={34}
-              alt="Horizon logo"
+              alt="Banker logo"
             />
             <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">Banker</h1>
           </Link>
