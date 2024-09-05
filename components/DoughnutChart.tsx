@@ -1,6 +1,8 @@
 "use client";
 import { Doughnut } from "react-chartjs-2";
 
+
+
 const DoughnutChart = () => {
   const data = {
     datasets: [
