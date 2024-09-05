@@ -19,7 +19,8 @@ import { useRouter } from 'next/navigation';
 import CustomInput from './CustomInput';
 import { authFormSchema } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
-import { signUp } from '@/lib/actions/user.actions';
+import { signIn, signUp } from '@/lib/actions/user.actions';
+import { M_PLUS_1 } from 'next/font/google';
 // import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions';
 // import PlaidLink from './PlaidLink';
 
@@ -58,22 +59,20 @@ const AuthForm = ({ type }: { type: string }) => {
             email: data.email,
             password: data.password
           }
-console.log(userData);
           const newUser = await signUp(userData);
-console.log(22,newUser);
           setUser(newUser);
         }
 
-        // if(type === 'sign-in') {
-        //   const response = await signIn({
-        //     email: data.email,
-        //     password: data.password,
-        //   })
-
-        //   if(response) router.push('/')
-        // }
+        if(type === 'sign-in') {
+          const response = await signIn({
+            email: data.email,
+            password: data.password,
+          })
+console.log(1,response);
+          if(response) router.push('/')
+        }
       } catch (error) {
-        console.log(error);
+        console.log(2 ,error);
       } finally {
         setIsLoading(false);
       }
