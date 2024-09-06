@@ -131,13 +131,15 @@ export const logoutAccount = async () => {
   }
 }
 
+
+//creating plaid link token 
 export const createLinkToken = async (user: User) => {
   try {
     const tokenParams = {
       user: {
         client_user_id: user.$id
       },
-      client_name: `${user.firstName} ${user.lastName}`,
+      client_name: user.name,
       products: ['auth'] as Products[],
       language: 'en',
       country_codes: ['US'] as CountryCode[],
