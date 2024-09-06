@@ -16,8 +16,9 @@ const DoughnutChart = () => {
   };
 
   return (
-    <Doughnut
+    <Doughnut 
       data={data}
+
       options={{
         cutout: "60%",
         plugins: {
